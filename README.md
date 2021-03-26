@@ -36,6 +36,8 @@ Nosso dashboard **não está funcionando.** E agora? =/
 
 Para começarmos a melhorá-lo, precisamos primeiro fazê-lo funcionar. Certo? Existem *7 erros* em nosso **App** e cabe a você descobrir o que está acontecendo.
 
+PS: Anote os erros e mostre a lista no corpo do email de resposta ao nosso contato.
+
 Mão à obra!
 
   
