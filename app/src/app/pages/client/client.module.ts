@@ -12,6 +12,7 @@ export const ClientRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ClientComponent]
+  declarations: [ClientComponent],
+  providers: [ClientService]
 })
 export class ClientModule {}
