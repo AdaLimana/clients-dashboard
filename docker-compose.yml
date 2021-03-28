@@ -1,0 +1,26 @@
+version: '3'
+
+services: 
+
+    app:
+        build: app/.
+        image: clients-dashboard-app
+        volumes: 
+            - ./app:/var/www/clients-dashboard-app
+            - ./app/clients-dashboard-app.conf:/etc/apache2/sites-available/000-default.conf 
+        depends_on: 
+            - api
+        ports:
+            - 8080:80
+        links:
+            - "api:api"
+        network_mode: bridge
+
+    api:
+        build: api/.
+        image: clients-dashboard-api
+        volumes: 
+            - ./api:/usr/api
+        ports:
+            - 3001:3000
+        network_mode: bridge
