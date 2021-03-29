@@ -8,10 +8,12 @@ import {
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { OverviewBoxComponent } from './overview-box/overview-box.component';
+import { EmptyListComponent } from './empty-list/empty-list.component';
 
 @NgModule({
   declarations: [
-    OverviewBoxComponent
+    OverviewBoxComponent,
+    EmptyListComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { OverviewBoxComponent } from './overview-box/overview-box.component';
     FlexLayoutModule
   ],
   exports: [
-    OverviewBoxComponent
+    OverviewBoxComponent,
+    EmptyListComponent,
   ]
 })
 export class CoreModule { }
