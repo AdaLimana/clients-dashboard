@@ -5,13 +5,17 @@ import { Routes } from '@angular/router';
 import { 
   MatButtonModule, 
   MatCardModule, 
+  MatFormFieldModule, 
   MatIconModule, 
+  MatInputModule, 
+  MatProgressBarModule, 
   MatTooltipModule 
 } from '@angular/material';
 
 import { ClientComponent } from './client.component';
 import { ClientService } from 'src/app/services/client.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { CoreModule } from 'src/app/core/core.module';
 
 export const ClientRoutes: Routes = [
   {
@@ -28,7 +32,11 @@ export const ClientRoutes: Routes = [
     MatIconModule,
     MatButtonModule,
     MatTooltipModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatProgressBarModule,
     FlexLayoutModule,
+    CoreModule
 
   ],
   providers: [ClientService]

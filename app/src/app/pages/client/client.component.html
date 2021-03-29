@@ -3,35 +3,42 @@
 
   <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutAlign="space-between stretch">
     
-    <mat-card 
-      fxLayout="row" fxLayoutAlign="space-between center" 
-      fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(50%-10px)" fxFlex.gt-md="0 1 calc(33%-10px)"
-      class="card-info-1"
-    >
-      <mat-icon class="card-info-label">people</mat-icon> 
-      Total de Clientes 
-      <span class="card-info-value">{{totals?.clientsAmount}}</span>
-    </mat-card>
+    <core-overview-box 
+      fxFlex.sm="0 1 calc(50%)" fxFlex.md="0 1 calc(50%)" fxFlex.gt-md="0 1 calc(33%)"
+      label="Total de Clientes"
+      icon="people"
+      value="{{totals?.clientsAmount}}"
+      template="1"
+    ></core-overview-box>
 
-    <mat-card 
-      fxLayout="row" fxLayoutAlign="space-between center" 
-      fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(50%-10px)" fxFlex.gt-md="0 1 calc(33%-10px)"
-      class="card-info-2"
-    >
-      <mat-icon class="card-info-label">apartment</mat-icon>
-      Total de Empreendimentos 
-      <span class="card-info-value"> {{totals?.enterprisesAmount}}</span>
-    </mat-card>
+    <core-overview-box 
+      fxFlex.sm="0 1 calc(50%)" fxFlex.md="0 1 calc(50%)" fxFlex.gt-md="0 1 calc(33%)"
+      label="Total de Empreendimentos"
+      icon="apartment"
+      value="{{totals?.enterprisesAmount}}"
+      template="2"
+    ></core-overview-box>
 
-    <mat-card 
-      fxLayout="row" fxLayoutAlign="space-between center" 
-      fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(50%-10px)" fxFlex.gt-md="0 1 calc(33%-10px)"
-      class="card-info-3"
-    >
-      <mat-icon class="card-info-label">home</mat-icon> 
-      Total de imóveis 
-      <span class="card-info-value"> {{totals?.realtiesAmount}}</span>
-    </mat-card>
+    <core-overview-box 
+      fxFlex.sm="0 1 calc(50%)" fxFlex.md="0 1 calc(50%)" fxFlex.gt-md="0 1 calc(33%)"
+      label="Total de imóveis "
+      icon="home"
+      value="{{totals?.realtiesAmount}}"
+      template="3"
+    ></core-overview-box>
+
+  </div>
+
+  <div fxLayout="column" fxLayout.gt-sm="row wrap" fxLayoutAlign="end">
+    <mat-form-field fxFlex.gt-sm="0 1 calc(50%-20px)" fxFlex="0 1 calc(100%-20px)" appearance="legacy">
+      <mat-label>Buscar cliente</mat-label>
+      <input #inputSearch matInput placeholder="Placeholder">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="loading">
+    <mat-progress-bar mode="query"> </mat-progress-bar>
   </div>
 
   <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutAlign="space-between stretch">
@@ -55,4 +62,6 @@
 
   </div>
 
+  <core-empty-list *ngIf="!loading && clients?.length === 0"></core-empty-list>
+  
 </div> 
