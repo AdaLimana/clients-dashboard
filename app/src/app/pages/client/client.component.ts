@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ClientService } from "src/app/services/client.service";
 
 @Component({
   selector: "app-client",
@@ -6,7 +7,25 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./client.component.scss"],
 })
 export class ClientComponent implements OnInit {
-  constructor() {}
+  
+  public clients: any[] = [];
 
-  ngOnInit(): void {}
+  public totals: any = {};
+
+  constructor(private clientService: ClientService) {}
+
+  ngOnInit(): void {
+    
+    this.clientService.getAll()
+        .subscribe(
+          response => this.clients = response,
+          error => console.log(error)
+        )
+
+    this.clientService.getGeneralTotals()
+        .subscribe(
+          response => this.totals = response,
+          error => console.log(error)
+        )
+  }
 }

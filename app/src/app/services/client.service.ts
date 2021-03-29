@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environments/environment";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class ClientService {
@@ -8,13 +9,23 @@ export class ClientService {
 
   constructor(private http: HttpClient) {}
 
-  getAll() {}
+  getAll() :Observable<any>{
+    return this.http.get(`${this.apiUrl}/`);
+  }
 
-  getById() {}
+  getById(id: number) :Observable<any>{
+    return this.http.get(`${this.apiUrl}/${id}`);
+  }
 
-  getByName() {}
+  getByName(name: string) :Observable<any>{
+    return this.http.get(`${this.apiUrl}/name${name}`);
+  }
 
-  getGeneralTotals() {}
+  getGeneralTotals() :Observable<any>{
+    return this.http.get(`${this.apiUrl}/totals`);
+  }
 
-  getTotalsByCompany() {}
+  getTotalsByCompany(id: number) :Observable<any>{
+    return this.http.get(`${this.apiUrl}/${id}/totals`);
+  }
 }
