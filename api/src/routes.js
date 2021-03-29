@@ -1,4 +1,5 @@
 const clientController = require('./controllers/client.controller');
+const enterpriseController = require('./controllers/enterprise.controller');
 
 module.exports.load = (app) => {
   /** Get all clients */
@@ -11,10 +12,10 @@ module.exports.load = (app) => {
   app.get("/:client_id/totals", clientController.clientTotals);  
 
   /** Get all enterprises */
-  app.get("/enterprise", (req, res, next) => {});
+  app.get("/enterprise", enterpriseController.enterpriseList);
 
   /** Get enterprises by name */
-  app.get("/enterprise/name/:name", (req, res, next) => {});
+  app.get("/enterprise/name/:name", enterpriseController.enterpriseByName);
 
   /** Get all enterprises by client */
   app.get("/:client_id/enterprise", clientController.clientEnterprises);
