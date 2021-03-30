@@ -9,10 +9,12 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { PagesModule } from "./pages/pages.module";
 import { NavbarModule } from "./navigation/navebar.module";
+import { DefaultPageComponent } from './components/default-page/default-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DefaultPageComponent,
   ],
   imports: [
     BrowserModule,
