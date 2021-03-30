@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Router } from "@angular/router";
 import { fromEvent } from "rxjs";
 import { debounceTime, distinctUntilChanged, filter, tap } from "rxjs/operators";
 import { ClientService } from "src/app/services/client.service";
@@ -16,27 +17,14 @@ export class ClientComponent implements OnInit, AfterViewInit {
   public clients: any[] = [];
   public totals: any = {};
 
-  constructor(private clientService: ClientService) {}
+  constructor(
+    private clientService: ClientService,
+    private router: Router 
+  ) {}
 
   ngOnInit(): void {
-    
-    this.clientService.getAll()
-        .subscribe(
-          response => {
-            this.clients = response
-            this.loading = false;
-          },
-          error => {
-            console.log(error)
-            this.loading = false;
-          }
-        )
-
-    this.clientService.getGeneralTotals()
-        .subscribe(
-          response => this.totals = response,
-          error => console.log(error)
-        )
+    this.getClients();
+    this.getTotals();    
   }
 
   ngAfterViewInit(): void {
@@ -51,34 +39,54 @@ export class ClientComponent implements OnInit, AfterViewInit {
                   const value = this.inputSearch.nativeElement.value;
                   this.loading = true;
                   if(value && value.replace(/ +/, '')){
-                    this.clientService.getByName(this.inputSearch.nativeElement.value.trim())
-                                      .subscribe(
-                                        response => {
-                                          this.clients = response;
-                                          this.loading = false;
-                                        },
-                                        error => {
-                                          console.log(error),
-                                          this.loading = false;
-                                        }  
-                                      );
+                    this.getClientsByName(this.inputSearch.nativeElement.value.trim())
                   }
                   else{
-                    this.clientService.getAll()
-                                      .subscribe(
-                                        response => {
-                                          this.clients = response;
-                                          this.loading = false;
-                                        },
-                                        error => {
-                                          console.log(error);
-                                          this.loading = false;
-                                        }  
-                                      );
+                    this.getClients();
                   }
                 }
               )
             )
             .subscribe();
+  }
+
+  public openClient(client: any){
+    this.router.navigateByUrl(`client/${client._id}`)
+  }
+
+  private getClients(){
+    this.clientService.getAll()
+    .subscribe(
+      response => {
+        this.clients = response
+        this.loading = false;
+      },
+      error => {
+        console.log(error)
+        this.loading = false;
+      }
+    );
+  }
+
+  private getTotals(){
+    this.clientService.getGeneralTotals()
+        .subscribe(
+          response => this.totals = response,
+          error => console.log(error)
+        );
+  }
+
+  private getClientsByName(name: string){
+    this.clientService.getByName(name)
+                      .subscribe(
+                        response => {
+                          this.clients = response;
+                          this.loading = false;
+                        },
+                        error => {
+                          console.log(error),
+                          this.loading = false;
+                        }  
+                      );
   }
 }

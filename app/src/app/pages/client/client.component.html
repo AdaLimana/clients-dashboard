@@ -32,7 +32,7 @@
   <div fxLayout="column" fxLayout.gt-sm="row wrap" fxLayoutAlign="end">
     <mat-form-field fxFlex.gt-sm="0 1 calc(50%-20px)" fxFlex="0 1 calc(100%-20px)" appearance="legacy">
       <mat-label>Buscar cliente</mat-label>
-      <input #inputSearch matInput placeholder="Placeholder">
+      <input #inputSearch matInput placeholder="Clientes">
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
   </div>
@@ -41,7 +41,7 @@
     <mat-progress-bar mode="query"> </mat-progress-bar>
   </div>
 
-  <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutAlign="space-between stretch">
+  <div fxLayout.xs="column" fxLayout="row wrap"  fxLayoutGap="20px">
 
     <mat-card  
       *ngFor="let client of clients"
@@ -56,12 +56,12 @@
           <span class="info">{{client.realtiesAmount}}</span>
       </mat-card-content>
       <mat-card-actions fxLayout="row" fxLayoutAling="end">
-        <button fxFlex mat-raised-button color="primary">Saiba mais</button>
+        <button fxFlex mat-raised-button color="primary" (click)="openClient(client)">Saiba mais</button>
       </mat-card-actions>
     </mat-card>
 
   </div>
 
   <core-empty-list *ngIf="!loading && clients?.length === 0"></core-empty-list>
-  
+
 </div> 
