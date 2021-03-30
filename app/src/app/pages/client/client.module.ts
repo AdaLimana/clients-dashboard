@@ -16,16 +16,24 @@ import { ClientComponent } from './client.component';
 import { ClientService } from 'src/app/services/client.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CoreModule } from 'src/app/core/core.module';
+import { ClientDetailComponent } from './client-detail/client-detail.component';
 
 export const ClientRoutes: Routes = [
   {
     path: 'client',
-    component: ClientComponent
+    component: ClientComponent,
+  },
+  {
+    path: 'client/:_id',
+    component: ClientDetailComponent
   }
 ];
 
 @NgModule({
-  declarations: [ClientComponent],
+  declarations: [
+    ClientComponent, 
+    ClientDetailComponent
+  ],
   imports: [
     CommonModule,
     MatCardModule,

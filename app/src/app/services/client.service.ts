@@ -18,7 +18,7 @@ export class ClientService {
   }
 
   getByName(name: string) :Observable<any>{
-    return this.http.get(`${this.apiUrl}/name${name}`);
+    return this.http.get(`${this.apiUrl}/name/${name}`);
   }
 
   getGeneralTotals() :Observable<any>{
@@ -28,4 +28,13 @@ export class ClientService {
   getTotalsByCompany(id: number) :Observable<any>{
     return this.http.get(`${this.apiUrl}/${id}/totals`);
   }
+
+  getEnterprisesByCompany(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id}/enterprise`);
+  }
+
+  getEnterprisesCompanyByName(id: number, name: string) :Observable<any>{
+    return this.http.get(`${this.apiUrl}/${id}/enterprise/name/${name}`);
+  }
+
 }
