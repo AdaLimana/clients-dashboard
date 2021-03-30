@@ -125,13 +125,7 @@ module.exports.getClientEnterprises = (id) => {
     if(client){
 
       const enterprises = client.enterprises
-                                .map((enterprise) => {
-                                  return {
-                                    _id: enterprise._id,
-                                    name: enterprise.name,
-                                    image_src: enterprise.image_src
-                                  }
-                                });
+                                .map((enterprise) => enterprise);
       resolve(enterprises);       
     }
     else{
